@@ -1,87 +1,119 @@
-# SENAC Grupo 32 — Sistema de Gerenciamento de Tarefas
+# SENAC Grupo 32 — Sistema de Gerenciamento de Atividades
 
 ## Sobre o projeto
 
-Este projeto está sendo desenvolvido como parte de uma atividade acadêmica do curso do SENAC.
+Este projeto está sendo desenvolvido como parte de uma atividade acadêmica do SENAC.
 
-O objetivo é desenvolver um sistema web de gerenciamento de tarefas, permitindo que os usuários organizem suas atividades de maneira simples e prática.
+O objetivo é desenvolver um sistema web de gerenciamento de atividades acadêmicas, permitindo que os usuários organizem suas tarefas e acompanhem suas atividades de acordo com a disciplina, prioridade e status.
 
-A aplicação contará com uma interface intuitiva, possibilitando cadastrar, visualizar, editar, excluir e concluir tarefas.
+A aplicação contará com uma interface simples e intuitiva, permitindo cadastrar, consultar, editar, excluir e concluir atividades.
 
 ## Objetivo da PoC (Prova de Conceito)
 
-A Prova de Conceito tem como objetivo demonstrar o funcionamento das principais funcionalidades do sistema de gerenciamento de tarefas.
+A Prova de Conceito tem como objetivo demonstrar o funcionamento das principais funcionalidades de um sistema de gerenciamento de atividades acadêmicas.
 
-Nesta primeira versão, o foco será desenvolver uma aplicação funcional que permita:
+O foco é desenvolver uma aplicação funcional que permita organizar atividades de diferentes disciplinas, facilitando o acompanhamento das tarefas e suas prioridades.
 
-- Cadastrar novas tarefas.
-- Listar as tarefas cadastradas.
-- Editar informações das tarefas.
-- Excluir tarefas.
-- Marcar tarefas como concluídas.
-- Filtrar tarefas de acordo com seu status.
+## Funcionalidades do sistema
 
-## Funcionalidades
+### Backend
 
-| Funcionalidade | Descrição |
-|---|---|
-| Cadastro | Permite adicionar novas tarefas. |
-| Listagem | Exibe todas as tarefas cadastradas. |
-| Edição | Permite alterar informações de uma tarefa. |
-| Exclusão | Permite remover tarefas. |
-| Conclusão | Permite marcar tarefas como concluídas. |
-| Filtros | Permite visualizar tarefas conforme seu status. |
-| Responsividade | Adapta a interface para dispositivos móveis. |
+O backend será responsável pelo processamento das informações e pela comunicação com o banco de dados MySQL.
 
-## Tecnologias utilizadas
+Funcionalidades previstas:
 
-> Esta seção será atualizada conforme a definição das tecnologias pela equipe.
+- Cadastrar uma atividade.
+- Consultar todas as atividades.
+- Consultar uma atividade específica.
+- Editar uma atividade.
+- Excluir uma atividade.
+- Marcar uma atividade como concluída.
+- Filtrar atividades por disciplina.
+- Filtrar atividades por prioridade.
+- Filtrar atividades por status.
+- Permitir a combinação de diferentes filtros simultaneamente.
 
-- **Frontend:** [Tecnologia utilizada]
-- **Backend:** [Tecnologia utilizada]
-- **Banco de dados:** [Banco de dados utilizado]
-- **Versionamento:** Git e GitHub
+### Frontend
+
+O frontend será responsável pela interface de interação com o usuário.
+
+Funcionalidades previstas:
+
+- Criar a interface principal do sistema.
+- Desenvolver o formulário de cadastro de atividades.
+- Exibir a listagem de atividades cadastradas.
+- Disponibilizar filtros de pesquisa.
+- Implementar ações para editar, excluir e concluir atividades.
+- Adaptar a interface para dispositivos móveis.
+
+## Tecnologias e ferramentas utilizadas
+
+### Frontend
+- HTML5
+- CSS3
+- JavaScript
+
+### Backend
+- Node.js
+
+### Banco de dados
+- MySQL
+
+### Ferramentas de desenvolvimento
+- Visual Studio Code (VS Code)
+- Postman
+- Git
+- GitHub
 
 ## Estrutura do projeto
 
-A estrutura de pastas será organizada conforme o desenvolvimento do frontend e backend.
+A estrutura do repositório será organizada para separar o frontend e o backend:
 
 ```text
 senac-grupo-32/
 │
 ├── frontend/
+│   ├── index.html
+│   ├── css/
+│   ├── js/
 │   └── ...
 │
 ├── backend/
-│   └── ...
+│   ├── ...
 │
 ├── README.md
 └── ...
 ```
 
-## Como executar o projeto
+*A estrutura poderá ser atualizada conforme a implementação do sistema.*
 
-As instruções de instalação e execução serão adicionadas após a configuração do ambiente de desenvolvimento.
+## Como executar o projeto
 
 ### Pré-requisitos
 
-- [Tecnologia necessária]
-- [Banco de dados necessário]
-- Git instalado.
+Antes de iniciar, é necessário ter instalado:
 
-### Instalação
+- Node.js
+- MySQL
+- Git
+
+Recomenda-se utilizar o Visual Studio Code para editar o código.
+
+### Clonar o repositório
 
 ```bash
-# Clonar o repositório
 git clone URL_DO_REPOSITORIO
+```
 
-# Entrar na pasta do projeto
+### Acessar a pasta do projeto
+
+```bash
 cd senac-grupo-32
 ```
 
-### Executar
+### Instalação e execução
 
-As instruções específicas para iniciar o frontend e o backend serão documentadas nesta seção.
+As instruções para configurar o banco de dados, instalar as dependências e iniciar o frontend e backend serão adicionadas após a configuração do ambiente.
 
 ## Equipe de desenvolvimento
 
@@ -98,5 +130,3 @@ As instruções específicas para iniciar o frontend e o backend serão document
 Em desenvolvimento.
 
 ---
-
-**Projeto acadêmico — SENAC | Grupo 32**
