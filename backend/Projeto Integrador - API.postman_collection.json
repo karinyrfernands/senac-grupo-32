@@ -1,0 +1,254 @@
+{
+  "info": {
+    "_postman_id": "b1a65651-49d0-4395-b827-528a2acffb71",
+    "name": "Projeto Integrador - API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "60108978",
+    "_collection_link": "https://go.postman.co/collection/60108978-b1a65651-49d0-4395-b827-528a2acffb71?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Disciplinas",
+      "item": [
+        {
+          "name": "Cadastrar disciplina",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Banco de Dados\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/disciplinas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "disciplinas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar disciplinas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/disciplinas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "disciplinas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar disciplinas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar disciplinas",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/disciplinas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "disciplinas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir disciplina",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/disciplinas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "disciplinas"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Atividades",
+      "item": [
+        {
+          "name": "Cadastrar atividade",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Trabalho de modelagem\",\r\n  \"descricao\": \"Entregar o diagrama no portal\",\r\n  \"disciplinaId\": 1,\r\n  \"dataEntrega\": \"2026-11-30T23:59:00.000Z\",\r\n  \"prioridade\": \"ALTA\",\r\n  \"status\": \"PENDENTE\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/atividades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "atividades"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar atividade",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/atividades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "atividades"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filtrar atividade",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/atividades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "atividades"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar atividade",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/atividades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "atividades"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar atividade",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/atividades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "atividades"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Concluir atividade",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/atividades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "atividades"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir atividade",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/atividades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "atividades"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}
