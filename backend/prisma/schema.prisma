@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum Prioridade {
+  BAIXA
+  MEDIA
+  ALTA
+}
+
+enum StatusAtividade {
+  PENDENTE
+  EM_ANDAMENTO
+  CONCLUIDA
+}
+
+model Disciplina {
+  id         Int         @id @default(autoincrement())
+  nome       String      @unique @db.VarChar(100)
+  atividades Atividade[]
+  createdAt  DateTime    @default(now()) @map("created_at")
+  updatedAt  DateTime    @updatedAt @map("updated_at")
+
+  @@map("disciplinas")
+}
+
+model Atividade {
+  id           Int             @id @default(autoincrement())
+  titulo       String          @db.VarChar(150)
+  descricao    String?         @db.Text
+  dataEntrega  DateTime        @map("data_entrega")
+  prioridade   Prioridade      @default(MEDIA)
+  status       StatusAtividade @default(PENDENTE)
+  disciplinaId Int             @map("disciplina_id")
+  disciplina   Disciplina      @relation(fields: [disciplinaId], references: [id], onUpdate: Cascade, onDelete: Restrict)
+  createdAt    DateTime        @default(now()) @map("created_at")
+  updatedAt    DateTime        @updatedAt @map("updated_at")
+
+  @@index([disciplinaId])
+  @@index([prioridade])
+  @@index([status])
+  @@index([dataEntrega])
+  @@map("atividades")
+}
