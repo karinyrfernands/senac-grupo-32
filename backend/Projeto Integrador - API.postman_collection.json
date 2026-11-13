@@ -42,6 +42,15 @@
           "request": {
             "method": "GET",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
               "raw": "{{baseUrl}}/api/disciplinas",
               "host": [
@@ -61,7 +70,15 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": ""
+              "raw": "{{baseUrl}}/api/disciplinas/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "disciplinas",
+                "1"
+              ]
             }
           },
           "response": []
@@ -71,14 +88,24 @@
           "request": {
             "method": "PATCH",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Engenharia de Software\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
-              "raw": "{{baseUrl}}/api/disciplinas",
+              "raw": "{{baseUrl}}/api/disciplinas/1",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
-                "disciplinas"
+                "disciplinas",
+                "1"
               ]
             }
           },
@@ -90,13 +117,14 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/api/disciplinas",
+              "raw": "{{baseUrl}}/api/disciplinas/1",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
-                "disciplinas"
+                "disciplinas",
+                "1"
               ]
             }
           },
@@ -114,7 +142,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"titulo\": \"Trabalho de modelagem\",\r\n  \"descricao\": \"Entregar o diagrama no portal\",\r\n  \"disciplinaId\": 1,\r\n  \"dataEntrega\": \"2026-11-30T23:59:00.000Z\",\r\n  \"prioridade\": \"ALTA\",\r\n  \"status\": \"PENDENTE\"\r\n}",
+              "raw": "{\r\n  \"titulo\": \"Engenharia de requisitos\",\r\n  \"descricao\": \"Definir o que o sistema deve fazer e quais são suas restrições\",\r\n  \"disciplinaId\": 3,\r\n  \"dataEntrega\": \"2026-11-19T23:59:00.000Z\",\r\n  \"prioridade\": \"ALTA\",\r\n  \"status\": \"PENDENTE\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -158,13 +186,27 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/api/atividades",
+              "raw": "{{baseUrl}}/api/atividades?prioridade=ALTA&status=PENDENTE&disciplinaId=1",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
                 "atividades"
+              ],
+              "query": [
+                {
+                  "key": "prioridade",
+                  "value": "ALTA"
+                },
+                {
+                  "key": "status",
+                  "value": "PENDENTE"
+                },
+                {
+                  "key": "disciplinaId",
+                  "value": "1"
+                }
               ]
             }
           },
@@ -176,13 +218,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/api/atividades",
+              "raw": "{{baseUrl}}/api/atividades/1",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
-                "atividades"
+                "atividades",
+                "1"
               ]
             }
           },
@@ -193,14 +236,24 @@
           "request": {
             "method": "PATCH",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"status\": \"EM_ANDAMENTO\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
-              "raw": "{{baseUrl}}/api/atividades",
+              "raw": "{{baseUrl}}/api/atividades/1",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
-                "atividades"
+                "atividades",
+                "1"
               ]
             }
           },
@@ -211,14 +264,25 @@
           "request": {
             "method": "PATCH",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
-              "raw": "{{baseUrl}}/api/atividades",
+              "raw": "{{baseUrl}}/api/atividades/1/concluir",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
-                "atividades"
+                "atividades",
+                "1",
+                "concluir"
               ]
             }
           },
@@ -230,13 +294,14 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/api/atividades",
+              "raw": "{{baseUrl}}/api/atividades/1",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
-                "atividades"
+                "atividades",
+                "1"
               ]
             }
           },
