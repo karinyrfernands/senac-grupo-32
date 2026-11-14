@@ -5,6 +5,7 @@ import type {
 } from "express";
 
 import { prisma } from "../database/prisma.js";
+import { obterUsuarioId } from "../middlewares/autenticar.js";
 import {
   criarDisciplinaSchema,
   editarDisciplinaSchema
@@ -31,12 +32,14 @@ export async function criarDisciplina(
   next: NextFunction
 ) {
   try {
+    const usuarioId = obterUsuarioId(res);
     const dados = criarDisciplinaSchema.parse(req.body);
 
     const disciplinaExistente =
-      await prisma.disciplina.findUnique({
+      await prisma.disciplina.findFirst({
         where: {
-          nome: dados.nome
+          nome: dados.nome,
+          usuarioId
         }
       });
 
@@ -50,7 +53,8 @@ export async function criarDisciplina(
 
     const disciplina = await prisma.disciplina.create({
       data: {
-        nome: dados.nome
+        nome: dados.nome,
+        usuarioId
       }
     });
 
@@ -66,7 +70,12 @@ export async function listarDisciplinas(
   next: NextFunction
 ) {
   try {
+    const usuarioId = obterUsuarioId(res);
+
     const disciplinas = await prisma.disciplina.findMany({
+      where: {
+        usuarioId
+      },
       orderBy: {
         nome: "asc"
       },
@@ -91,11 +100,13 @@ export async function consultarDisciplina(
   next: NextFunction
 ) {
   try {
+    const usuarioId = obterUsuarioId(res);
     const id = obterId(String(req.params.id));
 
-    const disciplina = await prisma.disciplina.findUnique({
+    const disciplina = await prisma.disciplina.findFirst({
       where: {
-        id
+        id,
+        usuarioId
       },
       include: {
         atividades: {
@@ -126,6 +137,7 @@ export async function editarDisciplina(
   next: NextFunction
 ) {
   try {
+    const usuarioId = obterUsuarioId(res);
     const id = obterId(String(req.params.id));
     const dados = editarDisciplinaSchema.parse(req.body);
 
@@ -138,9 +150,10 @@ export async function editarDisciplina(
     }
 
     const disciplinaAtual =
-      await prisma.disciplina.findUnique({
+      await prisma.disciplina.findFirst({
         where: {
-          id
+          id,
+          usuarioId
         }
       });
 
@@ -156,6 +169,7 @@ export async function editarDisciplina(
       await prisma.disciplina.findFirst({
         where: {
           nome: dados.nome,
+          usuarioId,
           id: {
             not: id
           }
@@ -192,11 +206,13 @@ export async function excluirDisciplina(
   next: NextFunction
 ) {
   try {
+    const usuarioId = obterUsuarioId(res);
     const id = obterId(String(req.params.id));
 
-    const disciplina = await prisma.disciplina.findUnique({
+    const disciplina = await prisma.disciplina.findFirst({
       where: {
-        id
+        id,
+        usuarioId
       },
       include: {
         _count: {

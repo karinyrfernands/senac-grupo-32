@@ -29,11 +29,13 @@ export type AggregateAtividade = {
 export type AtividadeAvgAggregateOutputType = {
   id: number | null
   disciplinaId: number | null
+  usuarioId: number | null
 }
 
 export type AtividadeSumAggregateOutputType = {
   id: number | null
   disciplinaId: number | null
+  usuarioId: number | null
 }
 
 export type AtividadeMinAggregateOutputType = {
@@ -44,6 +46,7 @@ export type AtividadeMinAggregateOutputType = {
   prioridade: $Enums.Prioridade | null
   status: $Enums.StatusAtividade | null
   disciplinaId: number | null
+  usuarioId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -56,6 +59,7 @@ export type AtividadeMaxAggregateOutputType = {
   prioridade: $Enums.Prioridade | null
   status: $Enums.StatusAtividade | null
   disciplinaId: number | null
+  usuarioId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -68,6 +72,7 @@ export type AtividadeCountAggregateOutputType = {
   prioridade: number
   status: number
   disciplinaId: number
+  usuarioId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -77,11 +82,13 @@ export type AtividadeCountAggregateOutputType = {
 export type AtividadeAvgAggregateInputType = {
   id?: true
   disciplinaId?: true
+  usuarioId?: true
 }
 
 export type AtividadeSumAggregateInputType = {
   id?: true
   disciplinaId?: true
+  usuarioId?: true
 }
 
 export type AtividadeMinAggregateInputType = {
@@ -92,6 +99,7 @@ export type AtividadeMinAggregateInputType = {
   prioridade?: true
   status?: true
   disciplinaId?: true
+  usuarioId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -104,6 +112,7 @@ export type AtividadeMaxAggregateInputType = {
   prioridade?: true
   status?: true
   disciplinaId?: true
+  usuarioId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -116,6 +125,7 @@ export type AtividadeCountAggregateInputType = {
   prioridade?: true
   status?: true
   disciplinaId?: true
+  usuarioId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -215,6 +225,7 @@ export type AtividadeGroupByOutputType = {
   prioridade: $Enums.Prioridade
   status: $Enums.StatusAtividade
   disciplinaId: number
+  usuarioId: number
   createdAt: Date
   updatedAt: Date
   _count: AtividadeCountAggregateOutputType | null
@@ -250,9 +261,11 @@ export type AtividadeWhereInput = {
   prioridade?: Prisma.EnumPrioridadeFilter<"Atividade"> | $Enums.Prioridade
   status?: Prisma.EnumStatusAtividadeFilter<"Atividade"> | $Enums.StatusAtividade
   disciplinaId?: Prisma.IntFilter<"Atividade"> | number
+  usuarioId?: Prisma.IntFilter<"Atividade"> | number
   createdAt?: Prisma.DateTimeFilter<"Atividade"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Atividade"> | Date | string
   disciplina?: Prisma.XOR<Prisma.DisciplinaScalarRelationFilter, Prisma.DisciplinaWhereInput>
+  usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
 }
 
 export type AtividadeOrderByWithRelationInput = {
@@ -263,9 +276,11 @@ export type AtividadeOrderByWithRelationInput = {
   prioridade?: Prisma.SortOrder
   status?: Prisma.SortOrder
   disciplinaId?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   disciplina?: Prisma.DisciplinaOrderByWithRelationInput
+  usuario?: Prisma.UsuarioOrderByWithRelationInput
   _relevance?: Prisma.AtividadeOrderByRelevanceInput
 }
 
@@ -280,9 +295,11 @@ export type AtividadeWhereUniqueInput = Prisma.AtLeast<{
   prioridade?: Prisma.EnumPrioridadeFilter<"Atividade"> | $Enums.Prioridade
   status?: Prisma.EnumStatusAtividadeFilter<"Atividade"> | $Enums.StatusAtividade
   disciplinaId?: Prisma.IntFilter<"Atividade"> | number
+  usuarioId?: Prisma.IntFilter<"Atividade"> | number
   createdAt?: Prisma.DateTimeFilter<"Atividade"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Atividade"> | Date | string
   disciplina?: Prisma.XOR<Prisma.DisciplinaScalarRelationFilter, Prisma.DisciplinaWhereInput>
+  usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
 }, "id">
 
 export type AtividadeOrderByWithAggregationInput = {
@@ -293,6 +310,7 @@ export type AtividadeOrderByWithAggregationInput = {
   prioridade?: Prisma.SortOrder
   status?: Prisma.SortOrder
   disciplinaId?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.AtividadeCountOrderByAggregateInput
@@ -313,6 +331,7 @@ export type AtividadeScalarWhereWithAggregatesInput = {
   prioridade?: Prisma.EnumPrioridadeWithAggregatesFilter<"Atividade"> | $Enums.Prioridade
   status?: Prisma.EnumStatusAtividadeWithAggregatesFilter<"Atividade"> | $Enums.StatusAtividade
   disciplinaId?: Prisma.IntWithAggregatesFilter<"Atividade"> | number
+  usuarioId?: Prisma.IntWithAggregatesFilter<"Atividade"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Atividade"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Atividade"> | Date | string
 }
@@ -326,6 +345,7 @@ export type AtividadeCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   disciplina: Prisma.DisciplinaCreateNestedOneWithoutAtividadesInput
+  usuario: Prisma.UsuarioCreateNestedOneWithoutAtividadesInput
 }
 
 export type AtividadeUncheckedCreateInput = {
@@ -336,6 +356,7 @@ export type AtividadeUncheckedCreateInput = {
   prioridade?: $Enums.Prioridade
   status?: $Enums.StatusAtividade
   disciplinaId: number
+  usuarioId: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -349,6 +370,7 @@ export type AtividadeUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   disciplina?: Prisma.DisciplinaUpdateOneRequiredWithoutAtividadesNestedInput
+  usuario?: Prisma.UsuarioUpdateOneRequiredWithoutAtividadesNestedInput
 }
 
 export type AtividadeUncheckedUpdateInput = {
@@ -359,6 +381,7 @@ export type AtividadeUncheckedUpdateInput = {
   prioridade?: Prisma.EnumPrioridadeFieldUpdateOperationsInput | $Enums.Prioridade
   status?: Prisma.EnumStatusAtividadeFieldUpdateOperationsInput | $Enums.StatusAtividade
   disciplinaId?: Prisma.IntFieldUpdateOperationsInput | number
+  usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -371,6 +394,7 @@ export type AtividadeCreateManyInput = {
   prioridade?: $Enums.Prioridade
   status?: $Enums.StatusAtividade
   disciplinaId: number
+  usuarioId: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -393,6 +417,7 @@ export type AtividadeUncheckedUpdateManyInput = {
   prioridade?: Prisma.EnumPrioridadeFieldUpdateOperationsInput | $Enums.Prioridade
   status?: Prisma.EnumStatusAtividadeFieldUpdateOperationsInput | $Enums.StatusAtividade
   disciplinaId?: Prisma.IntFieldUpdateOperationsInput | number
+  usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -421,6 +446,7 @@ export type AtividadeCountOrderByAggregateInput = {
   prioridade?: Prisma.SortOrder
   status?: Prisma.SortOrder
   disciplinaId?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -428,6 +454,7 @@ export type AtividadeCountOrderByAggregateInput = {
 export type AtividadeAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   disciplinaId?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
 }
 
 export type AtividadeMaxOrderByAggregateInput = {
@@ -438,6 +465,7 @@ export type AtividadeMaxOrderByAggregateInput = {
   prioridade?: Prisma.SortOrder
   status?: Prisma.SortOrder
   disciplinaId?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -450,6 +478,7 @@ export type AtividadeMinOrderByAggregateInput = {
   prioridade?: Prisma.SortOrder
   status?: Prisma.SortOrder
   disciplinaId?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -457,6 +486,49 @@ export type AtividadeMinOrderByAggregateInput = {
 export type AtividadeSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   disciplinaId?: Prisma.SortOrder
+  usuarioId?: Prisma.SortOrder
+}
+
+export type AtividadeCreateNestedManyWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.AtividadeCreateWithoutUsuarioInput, Prisma.AtividadeUncheckedCreateWithoutUsuarioInput> | Prisma.AtividadeCreateWithoutUsuarioInput[] | Prisma.AtividadeUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.AtividadeCreateOrConnectWithoutUsuarioInput | Prisma.AtividadeCreateOrConnectWithoutUsuarioInput[]
+  createMany?: Prisma.AtividadeCreateManyUsuarioInputEnvelope
+  connect?: Prisma.AtividadeWhereUniqueInput | Prisma.AtividadeWhereUniqueInput[]
+}
+
+export type AtividadeUncheckedCreateNestedManyWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.AtividadeCreateWithoutUsuarioInput, Prisma.AtividadeUncheckedCreateWithoutUsuarioInput> | Prisma.AtividadeCreateWithoutUsuarioInput[] | Prisma.AtividadeUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.AtividadeCreateOrConnectWithoutUsuarioInput | Prisma.AtividadeCreateOrConnectWithoutUsuarioInput[]
+  createMany?: Prisma.AtividadeCreateManyUsuarioInputEnvelope
+  connect?: Prisma.AtividadeWhereUniqueInput | Prisma.AtividadeWhereUniqueInput[]
+}
+
+export type AtividadeUpdateManyWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.AtividadeCreateWithoutUsuarioInput, Prisma.AtividadeUncheckedCreateWithoutUsuarioInput> | Prisma.AtividadeCreateWithoutUsuarioInput[] | Prisma.AtividadeUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.AtividadeCreateOrConnectWithoutUsuarioInput | Prisma.AtividadeCreateOrConnectWithoutUsuarioInput[]
+  upsert?: Prisma.AtividadeUpsertWithWhereUniqueWithoutUsuarioInput | Prisma.AtividadeUpsertWithWhereUniqueWithoutUsuarioInput[]
+  createMany?: Prisma.AtividadeCreateManyUsuarioInputEnvelope
+  set?: Prisma.AtividadeWhereUniqueInput | Prisma.AtividadeWhereUniqueInput[]
+  disconnect?: Prisma.AtividadeWhereUniqueInput | Prisma.AtividadeWhereUniqueInput[]
+  delete?: Prisma.AtividadeWhereUniqueInput | Prisma.AtividadeWhereUniqueInput[]
+  connect?: Prisma.AtividadeWhereUniqueInput | Prisma.AtividadeWhereUniqueInput[]
+  update?: Prisma.AtividadeUpdateWithWhereUniqueWithoutUsuarioInput | Prisma.AtividadeUpdateWithWhereUniqueWithoutUsuarioInput[]
+  updateMany?: Prisma.AtividadeUpdateManyWithWhereWithoutUsuarioInput | Prisma.AtividadeUpdateManyWithWhereWithoutUsuarioInput[]
+  deleteMany?: Prisma.AtividadeScalarWhereInput | Prisma.AtividadeScalarWhereInput[]
+}
+
+export type AtividadeUncheckedUpdateManyWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.AtividadeCreateWithoutUsuarioInput, Prisma.AtividadeUncheckedCreateWithoutUsuarioInput> | Prisma.AtividadeCreateWithoutUsuarioInput[] | Prisma.AtividadeUncheckedCreateWithoutUsuarioInput[]
+  connectOrCreate?: Prisma.AtividadeCreateOrConnectWithoutUsuarioInput | Prisma.AtividadeCreateOrConnectWithoutUsuarioInput[]
+  upsert?: Prisma.AtividadeUpsertWithWhereUniqueWithoutUsuarioInput | Prisma.AtividadeUpsertWithWhereUniqueWithoutUsuarioInput[]
+  createMany?: Prisma.AtividadeCreateManyUsuarioInputEnvelope
+  set?: Prisma.AtividadeWhereUniqueInput | Prisma.AtividadeWhereUniqueInput[]
+  disconnect?: Prisma.AtividadeWhereUniqueInput | Prisma.AtividadeWhereUniqueInput[]
+  delete?: Prisma.AtividadeWhereUniqueInput | Prisma.AtividadeWhereUniqueInput[]
+  connect?: Prisma.AtividadeWhereUniqueInput | Prisma.AtividadeWhereUniqueInput[]
+  update?: Prisma.AtividadeUpdateWithWhereUniqueWithoutUsuarioInput | Prisma.AtividadeUpdateWithWhereUniqueWithoutUsuarioInput[]
+  updateMany?: Prisma.AtividadeUpdateManyWithWhereWithoutUsuarioInput | Prisma.AtividadeUpdateManyWithWhereWithoutUsuarioInput[]
+  deleteMany?: Prisma.AtividadeScalarWhereInput | Prisma.AtividadeScalarWhereInput[]
 }
 
 export type AtividadeCreateNestedManyWithoutDisciplinaInput = {
@@ -513,6 +585,71 @@ export type EnumStatusAtividadeFieldUpdateOperationsInput = {
   set?: $Enums.StatusAtividade
 }
 
+export type AtividadeCreateWithoutUsuarioInput = {
+  titulo: string
+  descricao?: string | null
+  dataEntrega: Date | string
+  prioridade?: $Enums.Prioridade
+  status?: $Enums.StatusAtividade
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  disciplina: Prisma.DisciplinaCreateNestedOneWithoutAtividadesInput
+}
+
+export type AtividadeUncheckedCreateWithoutUsuarioInput = {
+  id?: number
+  titulo: string
+  descricao?: string | null
+  dataEntrega: Date | string
+  prioridade?: $Enums.Prioridade
+  status?: $Enums.StatusAtividade
+  disciplinaId: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type AtividadeCreateOrConnectWithoutUsuarioInput = {
+  where: Prisma.AtividadeWhereUniqueInput
+  create: Prisma.XOR<Prisma.AtividadeCreateWithoutUsuarioInput, Prisma.AtividadeUncheckedCreateWithoutUsuarioInput>
+}
+
+export type AtividadeCreateManyUsuarioInputEnvelope = {
+  data: Prisma.AtividadeCreateManyUsuarioInput | Prisma.AtividadeCreateManyUsuarioInput[]
+  skipDuplicates?: boolean
+}
+
+export type AtividadeUpsertWithWhereUniqueWithoutUsuarioInput = {
+  where: Prisma.AtividadeWhereUniqueInput
+  update: Prisma.XOR<Prisma.AtividadeUpdateWithoutUsuarioInput, Prisma.AtividadeUncheckedUpdateWithoutUsuarioInput>
+  create: Prisma.XOR<Prisma.AtividadeCreateWithoutUsuarioInput, Prisma.AtividadeUncheckedCreateWithoutUsuarioInput>
+}
+
+export type AtividadeUpdateWithWhereUniqueWithoutUsuarioInput = {
+  where: Prisma.AtividadeWhereUniqueInput
+  data: Prisma.XOR<Prisma.AtividadeUpdateWithoutUsuarioInput, Prisma.AtividadeUncheckedUpdateWithoutUsuarioInput>
+}
+
+export type AtividadeUpdateManyWithWhereWithoutUsuarioInput = {
+  where: Prisma.AtividadeScalarWhereInput
+  data: Prisma.XOR<Prisma.AtividadeUpdateManyMutationInput, Prisma.AtividadeUncheckedUpdateManyWithoutUsuarioInput>
+}
+
+export type AtividadeScalarWhereInput = {
+  AND?: Prisma.AtividadeScalarWhereInput | Prisma.AtividadeScalarWhereInput[]
+  OR?: Prisma.AtividadeScalarWhereInput[]
+  NOT?: Prisma.AtividadeScalarWhereInput | Prisma.AtividadeScalarWhereInput[]
+  id?: Prisma.IntFilter<"Atividade"> | number
+  titulo?: Prisma.StringFilter<"Atividade"> | string
+  descricao?: Prisma.StringNullableFilter<"Atividade"> | string | null
+  dataEntrega?: Prisma.DateTimeFilter<"Atividade"> | Date | string
+  prioridade?: Prisma.EnumPrioridadeFilter<"Atividade"> | $Enums.Prioridade
+  status?: Prisma.EnumStatusAtividadeFilter<"Atividade"> | $Enums.StatusAtividade
+  disciplinaId?: Prisma.IntFilter<"Atividade"> | number
+  usuarioId?: Prisma.IntFilter<"Atividade"> | number
+  createdAt?: Prisma.DateTimeFilter<"Atividade"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Atividade"> | Date | string
+}
+
 export type AtividadeCreateWithoutDisciplinaInput = {
   titulo: string
   descricao?: string | null
@@ -521,6 +658,7 @@ export type AtividadeCreateWithoutDisciplinaInput = {
   status?: $Enums.StatusAtividade
   createdAt?: Date | string
   updatedAt?: Date | string
+  usuario: Prisma.UsuarioCreateNestedOneWithoutAtividadesInput
 }
 
 export type AtividadeUncheckedCreateWithoutDisciplinaInput = {
@@ -530,6 +668,7 @@ export type AtividadeUncheckedCreateWithoutDisciplinaInput = {
   dataEntrega: Date | string
   prioridade?: $Enums.Prioridade
   status?: $Enums.StatusAtividade
+  usuarioId: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -560,19 +699,51 @@ export type AtividadeUpdateManyWithWhereWithoutDisciplinaInput = {
   data: Prisma.XOR<Prisma.AtividadeUpdateManyMutationInput, Prisma.AtividadeUncheckedUpdateManyWithoutDisciplinaInput>
 }
 
-export type AtividadeScalarWhereInput = {
-  AND?: Prisma.AtividadeScalarWhereInput | Prisma.AtividadeScalarWhereInput[]
-  OR?: Prisma.AtividadeScalarWhereInput[]
-  NOT?: Prisma.AtividadeScalarWhereInput | Prisma.AtividadeScalarWhereInput[]
-  id?: Prisma.IntFilter<"Atividade"> | number
-  titulo?: Prisma.StringFilter<"Atividade"> | string
-  descricao?: Prisma.StringNullableFilter<"Atividade"> | string | null
-  dataEntrega?: Prisma.DateTimeFilter<"Atividade"> | Date | string
-  prioridade?: Prisma.EnumPrioridadeFilter<"Atividade"> | $Enums.Prioridade
-  status?: Prisma.EnumStatusAtividadeFilter<"Atividade"> | $Enums.StatusAtividade
-  disciplinaId?: Prisma.IntFilter<"Atividade"> | number
-  createdAt?: Prisma.DateTimeFilter<"Atividade"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Atividade"> | Date | string
+export type AtividadeCreateManyUsuarioInput = {
+  id?: number
+  titulo: string
+  descricao?: string | null
+  dataEntrega: Date | string
+  prioridade?: $Enums.Prioridade
+  status?: $Enums.StatusAtividade
+  disciplinaId: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type AtividadeUpdateWithoutUsuarioInput = {
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridade?: Prisma.EnumPrioridadeFieldUpdateOperationsInput | $Enums.Prioridade
+  status?: Prisma.EnumStatusAtividadeFieldUpdateOperationsInput | $Enums.StatusAtividade
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  disciplina?: Prisma.DisciplinaUpdateOneRequiredWithoutAtividadesNestedInput
+}
+
+export type AtividadeUncheckedUpdateWithoutUsuarioInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridade?: Prisma.EnumPrioridadeFieldUpdateOperationsInput | $Enums.Prioridade
+  status?: Prisma.EnumStatusAtividadeFieldUpdateOperationsInput | $Enums.StatusAtividade
+  disciplinaId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type AtividadeUncheckedUpdateManyWithoutUsuarioInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prioridade?: Prisma.EnumPrioridadeFieldUpdateOperationsInput | $Enums.Prioridade
+  status?: Prisma.EnumStatusAtividadeFieldUpdateOperationsInput | $Enums.StatusAtividade
+  disciplinaId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AtividadeCreateManyDisciplinaInput = {
@@ -582,6 +753,7 @@ export type AtividadeCreateManyDisciplinaInput = {
   dataEntrega: Date | string
   prioridade?: $Enums.Prioridade
   status?: $Enums.StatusAtividade
+  usuarioId: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -594,6 +766,7 @@ export type AtividadeUpdateWithoutDisciplinaInput = {
   status?: Prisma.EnumStatusAtividadeFieldUpdateOperationsInput | $Enums.StatusAtividade
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  usuario?: Prisma.UsuarioUpdateOneRequiredWithoutAtividadesNestedInput
 }
 
 export type AtividadeUncheckedUpdateWithoutDisciplinaInput = {
@@ -603,6 +776,7 @@ export type AtividadeUncheckedUpdateWithoutDisciplinaInput = {
   dataEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prioridade?: Prisma.EnumPrioridadeFieldUpdateOperationsInput | $Enums.Prioridade
   status?: Prisma.EnumStatusAtividadeFieldUpdateOperationsInput | $Enums.StatusAtividade
+  usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -614,6 +788,7 @@ export type AtividadeUncheckedUpdateManyWithoutDisciplinaInput = {
   dataEntrega?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prioridade?: Prisma.EnumPrioridadeFieldUpdateOperationsInput | $Enums.Prioridade
   status?: Prisma.EnumStatusAtividadeFieldUpdateOperationsInput | $Enums.StatusAtividade
+  usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -628,9 +803,11 @@ export type AtividadeSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   prioridade?: boolean
   status?: boolean
   disciplinaId?: boolean
+  usuarioId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   disciplina?: boolean | Prisma.DisciplinaDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["atividade"]>
 
 
@@ -643,19 +820,22 @@ export type AtividadeSelectScalar = {
   prioridade?: boolean
   status?: boolean
   disciplinaId?: boolean
+  usuarioId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type AtividadeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "titulo" | "descricao" | "dataEntrega" | "prioridade" | "status" | "disciplinaId" | "createdAt" | "updatedAt", ExtArgs["result"]["atividade"]>
+export type AtividadeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "titulo" | "descricao" | "dataEntrega" | "prioridade" | "status" | "disciplinaId" | "usuarioId" | "createdAt" | "updatedAt", ExtArgs["result"]["atividade"]>
 export type AtividadeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   disciplina?: boolean | Prisma.DisciplinaDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }
 
 export type $AtividadePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Atividade"
   objects: {
     disciplina: Prisma.$DisciplinaPayload<ExtArgs>
+    usuario: Prisma.$UsuarioPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -665,6 +845,7 @@ export type $AtividadePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     prioridade: $Enums.Prioridade
     status: $Enums.StatusAtividade
     disciplinaId: number
+    usuarioId: number
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["atividade"]>
@@ -1008,6 +1189,7 @@ readonly fields: AtividadeFieldRefs;
 export interface Prisma__AtividadeClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   disciplina<T extends Prisma.DisciplinaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DisciplinaDefaultArgs<ExtArgs>>): Prisma.Prisma__DisciplinaClient<runtime.Types.Result.GetResult<Prisma.$DisciplinaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  usuario<T extends Prisma.UsuarioDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UsuarioDefaultArgs<ExtArgs>>): Prisma.Prisma__UsuarioClient<runtime.Types.Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1044,6 +1226,7 @@ export interface AtividadeFieldRefs {
   readonly prioridade: Prisma.FieldRef<"Atividade", 'Prioridade'>
   readonly status: Prisma.FieldRef<"Atividade", 'StatusAtividade'>
   readonly disciplinaId: Prisma.FieldRef<"Atividade", 'Int'>
+  readonly usuarioId: Prisma.FieldRef<"Atividade", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Atividade", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Atividade", 'DateTime'>
 }

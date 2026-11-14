@@ -5,6 +5,7 @@ import type {
 } from "express";
 
 import { prisma } from "../database/prisma.js";
+import { obterUsuarioId } from "../middlewares/autenticar.js";
 import {
   criarAtividadeSchema,
   editarAtividadeSchema
@@ -56,12 +57,15 @@ function statusValido(
   );
 }
 
+// A disciplina precisa existir E pertencer ao usuário logado.
 async function verificarDisciplina(
-  disciplinaId: number
+  disciplinaId: number,
+  usuarioId: number
 ) {
-  const disciplina = await prisma.disciplina.findUnique({
+  const disciplina = await prisma.disciplina.findFirst({
     where: {
-      id: disciplinaId
+      id: disciplinaId,
+      usuarioId
     }
   });
 
@@ -80,15 +84,17 @@ export async function criarAtividade(
   next: NextFunction
 ) {
   try {
+    const usuarioId = obterUsuarioId(res);
     const dados = criarAtividadeSchema.parse(req.body);
 
-    await verificarDisciplina(dados.disciplinaId);
+    await verificarDisciplina(dados.disciplinaId, usuarioId);
 
     const atividade = await prisma.atividade.create({
       data: {
         titulo: dados.titulo,
         descricao: dados.descricao ?? null,
         disciplinaId: dados.disciplinaId,
+        usuarioId,
         dataEntrega: new Date(dados.dataEntrega),
         prioridade: dados.prioridade,
         status: dados.status
@@ -110,6 +116,8 @@ export async function listarAtividades(
   next: NextFunction
 ) {
   try {
+    const usuarioId = obterUsuarioId(res);
+
     const {
       disciplinaId,
       prioridade,
@@ -188,6 +196,7 @@ export async function listarAtividades(
 
     const atividades = await prisma.atividade.findMany({
       where: {
+        usuarioId,
         disciplinaId: disciplinaFiltro,
         prioridade: prioridadeFiltro,
         status: statusFiltro
@@ -222,11 +231,13 @@ export async function consultarAtividade(
   next: NextFunction
 ) {
   try {
+    const usuarioId = obterUsuarioId(res);
     const id = obterId(String(req.params.id));
 
-    const atividade = await prisma.atividade.findUnique({
+    const atividade = await prisma.atividade.findFirst({
       where: {
-        id
+        id,
+        usuarioId
       },
       include: {
         disciplina: true
@@ -253,6 +264,7 @@ export async function editarAtividade(
   next: NextFunction
 ) {
   try {
+    const usuarioId = obterUsuarioId(res);
     const id = obterId(String(req.params.id));
     const dados = editarAtividadeSchema.parse(req.body);
 
@@ -265,9 +277,10 @@ export async function editarAtividade(
     }
 
     const atividadeAtual =
-      await prisma.atividade.findUnique({
+      await prisma.atividade.findFirst({
         where: {
-          id
+          id,
+          usuarioId
         }
       });
 
@@ -280,7 +293,7 @@ export async function editarAtividade(
     }
 
     if (dados.disciplinaId !== undefined) {
-      await verificarDisciplina(dados.disciplinaId);
+      await verificarDisciplina(dados.disciplinaId, usuarioId);
     }
 
     const atividadeAtualizada =
@@ -316,11 +329,13 @@ export async function concluirAtividade(
   next: NextFunction
 ) {
   try {
+    const usuarioId = obterUsuarioId(res);
     const id = obterId(String(req.params.id));
 
-    const atividade = await prisma.atividade.findUnique({
+    const atividade = await prisma.atividade.findFirst({
       where: {
-        id
+        id,
+        usuarioId
       }
     });
 
@@ -360,11 +375,13 @@ export async function excluirAtividade(
   next: NextFunction
 ) {
   try {
+    const usuarioId = obterUsuarioId(res);
     const id = obterId(String(req.params.id));
 
-    const atividade = await prisma.atividade.findUnique({
+    const atividade = await prisma.atividade.findFirst({
       where: {
-        id
+        id,
+        usuarioId
       }
     });
 

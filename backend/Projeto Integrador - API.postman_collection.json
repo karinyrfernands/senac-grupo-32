@@ -1,12 +1,125 @@
 {
   "info": {
-    "_postman_id": "b1a65651-49d0-4395-b827-528a2acffb71",
+    "_postman_id": "b26f3781-798d-4672-9fff-fb5109e69e71",
     "name": "Projeto Integrador - API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "60108978",
-    "_collection_link": "https://go.postman.co/collection/60108978-b1a65651-49d0-4395-b827-528a2acffb71?source=collection_link"
+    "description": "Rode primeiro 'Cadastrar usuário' ou 'Login': o token é guardado sozinho e usado nas demais requisições. Troque o número 1 das URLs pelo ID real.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
+    {
+      "name": "Autenticação",
+      "item": [
+        {
+          "name": "Cadastrar usuário",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/cadastro",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "cadastro"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Maria Silva\",\n  \"email\": \"maria@email.com\",\n  \"senha\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Guarda o token automaticamente para as outras requisições usarem.",
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "  pm.collectionVariables.set(\"token\", pm.response.json().token);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"maria@email.com\",\n  \"senha\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Guarda o token automaticamente para as outras requisições usarem.",
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "  pm.collectionVariables.set(\"token\", pm.response.json().token);",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Meu perfil",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
     {
       "name": "Disciplinas",
       "item": [
@@ -15,15 +128,6 @@
           "request": {
             "method": "POST",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"nome\": \"Banco de Dados\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
               "raw": "{{baseUrl}}/api/disciplinas",
               "host": [
@@ -33,6 +137,15 @@
                 "api",
                 "disciplinas"
               ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Banco de Dados\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             }
           },
           "response": []
@@ -42,15 +155,6 @@
           "request": {
             "method": "GET",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
               "raw": "{{baseUrl}}/api/disciplinas",
               "host": [
@@ -88,15 +192,6 @@
           "request": {
             "method": "PATCH",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"nome\": \"Engenharia de Software\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
               "raw": "{{baseUrl}}/api/disciplinas/1",
               "host": [
@@ -107,6 +202,15 @@
                 "disciplinas",
                 "1"
               ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Engenharia de Software\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             }
           },
           "response": []
@@ -140,15 +244,6 @@
           "request": {
             "method": "POST",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"titulo\": \"Engenharia de requisitos\",\r\n  \"descricao\": \"Definir o que o sistema deve fazer e quais são suas restrições\",\r\n  \"disciplinaId\": 3,\r\n  \"dataEntrega\": \"2026-11-19T23:59:00.000Z\",\r\n  \"prioridade\": \"ALTA\",\r\n  \"status\": \"PENDENTE\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
               "raw": "{{baseUrl}}/api/atividades",
               "host": [
@@ -158,6 +253,15 @@
                 "api",
                 "atividades"
               ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Trabalho de modelagem\",\n  \"descricao\": \"Entregar o diagrama no portal\",\n  \"disciplinaId\": 1,\n  \"dataEntrega\": \"2026-11-30T23:59:00.000Z\",\n  \"prioridade\": \"ALTA\",\n  \"status\": \"PENDENTE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             }
           },
           "response": []
@@ -236,15 +340,6 @@
           "request": {
             "method": "PATCH",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"status\": \"EM_ANDAMENTO\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
               "raw": "{{baseUrl}}/api/atividades/1",
               "host": [
@@ -255,6 +350,15 @@
                 "atividades",
                 "1"
               ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"EM_ANDAMENTO\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             }
           },
           "response": []
@@ -264,15 +368,6 @@
           "request": {
             "method": "PATCH",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
               "raw": "{{baseUrl}}/api/atividades/1/concluir",
               "host": [
@@ -310,10 +405,26 @@
       ]
     }
   ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
   "variable": [
     {
       "key": "baseUrl",
-      "value": ""
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
     }
   ]
 }

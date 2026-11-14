@@ -19,13 +19,29 @@ enum StatusAtividade {
   CONCLUIDA
 }
 
+model Usuario {
+  id          Int          @id @default(autoincrement())
+  nome        String       @db.VarChar(100)
+  email       String       @unique @db.VarChar(150)
+  senhaHash   String       @map("senha_hash") @db.VarChar(255)
+  disciplinas Disciplina[]
+  atividades  Atividade[]
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+
+  @@map("usuarios")
+}
+
 model Disciplina {
   id         Int         @id @default(autoincrement())
-  nome       String      @unique @db.VarChar(100)
+  nome       String      @db.VarChar(100)
+  usuarioId  Int         @map("usuario_id")
+  usuario    Usuario     @relation(fields: [usuarioId], references: [id], onUpdate: Cascade, onDelete: Restrict)
   atividades Atividade[]
   createdAt  DateTime    @default(now()) @map("created_at")
   updatedAt  DateTime    @updatedAt @map("updated_at")
 
+  @@unique([usuarioId, nome])
   @@map("disciplinas")
 }
 
@@ -38,10 +54,13 @@ model Atividade {
   status       StatusAtividade @default(PENDENTE)
   disciplinaId Int             @map("disciplina_id")
   disciplina   Disciplina      @relation(fields: [disciplinaId], references: [id], onUpdate: Cascade, onDelete: Restrict)
+  usuarioId    Int             @map("usuario_id")
+  usuario      Usuario         @relation(fields: [usuarioId], references: [id], onUpdate: Cascade, onDelete: Restrict)
   createdAt    DateTime        @default(now()) @map("created_at")
   updatedAt    DateTime        @updatedAt @map("updated_at")
 
   @@index([disciplinaId])
+  @@index([usuarioId])
   @@index([prioridade])
   @@index([status])
   @@index([dataEntrega])

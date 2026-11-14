@@ -8,6 +8,7 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/Usuario'
 export type * from './models/Disciplina'
 export type * from './models/Atividade'
 export type * from './commonInputTypes'

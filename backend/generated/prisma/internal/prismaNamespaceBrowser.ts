@@ -51,6 +51,7 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Usuario: 'Usuario',
   Disciplina: 'Disciplina',
   Atividade: 'Atividade'
 } as const
@@ -71,9 +72,22 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const UsuarioScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  email: 'email',
+  senhaHash: 'senhaHash',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
+
+
 export const DisciplinaScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
+  usuarioId: 'usuarioId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -89,6 +103,7 @@ export const AtividadeScalarFieldEnum = {
   prioridade: 'prioridade',
   status: 'status',
   disciplinaId: 'disciplinaId',
+  usuarioId: 'usuarioId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -102,6 +117,15 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const UsuarioOrderByRelevanceFieldEnum = {
+  nome: 'nome',
+  email: 'email',
+  senhaHash: 'senhaHash'
+} as const
+
+export type UsuarioOrderByRelevanceFieldEnum = (typeof UsuarioOrderByRelevanceFieldEnum)[keyof typeof UsuarioOrderByRelevanceFieldEnum]
 
 
 export const DisciplinaOrderByRelevanceFieldEnum = {

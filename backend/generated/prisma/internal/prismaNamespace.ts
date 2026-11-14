@@ -397,6 +397,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
+  Usuario: 'Usuario',
   Disciplina: 'Disciplina',
   Atividade: 'Atividade'
 } as const
@@ -414,10 +415,76 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "disciplina" | "atividade"
+    modelProps: "usuario" | "disciplina" | "atividade"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
+    Usuario: {
+      payload: Prisma.$UsuarioPayload<ExtArgs>
+      fields: Prisma.UsuarioFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UsuarioFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UsuarioFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>
+        }
+        findFirst: {
+          args: Prisma.UsuarioFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UsuarioFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>
+        }
+        findMany: {
+          args: Prisma.UsuarioFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>[]
+        }
+        create: {
+          args: Prisma.UsuarioCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>
+        }
+        createMany: {
+          args: Prisma.UsuarioCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.UsuarioDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>
+        }
+        update: {
+          args: Prisma.UsuarioUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>
+        }
+        deleteMany: {
+          args: Prisma.UsuarioDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UsuarioUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.UsuarioUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UsuarioPayload>
+        }
+        aggregate: {
+          args: Prisma.UsuarioAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUsuario>
+        }
+        groupBy: {
+          args: Prisma.UsuarioGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UsuarioGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UsuarioCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UsuarioCountAggregateOutputType> | number
+        }
+      }
+    }
     Disciplina: {
       payload: Prisma.$DisciplinaPayload<ExtArgs>
       fields: Prisma.DisciplinaFieldRefs
@@ -589,9 +656,22 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const UsuarioScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  email: 'email',
+  senhaHash: 'senhaHash',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
+
+
 export const DisciplinaScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
+  usuarioId: 'usuarioId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -607,6 +687,7 @@ export const AtividadeScalarFieldEnum = {
   prioridade: 'prioridade',
   status: 'status',
   disciplinaId: 'disciplinaId',
+  usuarioId: 'usuarioId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -620,6 +701,15 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const UsuarioOrderByRelevanceFieldEnum = {
+  nome: 'nome',
+  email: 'email',
+  senhaHash: 'senhaHash'
+} as const
+
+export type UsuarioOrderByRelevanceFieldEnum = (typeof UsuarioOrderByRelevanceFieldEnum)[keyof typeof UsuarioOrderByRelevanceFieldEnum]
 
 
 export const DisciplinaOrderByRelevanceFieldEnum = {
@@ -843,6 +933,7 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
  */
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
+  usuario?: Prisma.UsuarioOmit
   disciplina?: Prisma.DisciplinaOmit
   atividade?: Prisma.AtividadeOmit
 }
