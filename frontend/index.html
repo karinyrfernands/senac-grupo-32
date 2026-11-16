@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Organizador de Atividades Acadêmicas — SENAC Grupo 32</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <!-- Mensagem global (toast) -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- ============ TELA DE LOGIN / CADASTRO ============ -->
+  <section id="tela-auth" class="tela-auth">
+    <div class="auth-card">
+      <h1 class="auth-logo">📚 Minhas Atividades</h1>
+      <p class="auth-subtitulo">Organize suas tarefas acadêmicas em um só lugar.</p>
+
+      <div class="abas">
+        <button class="aba ativa" data-aba="login" type="button">Entrar</button>
+        <button class="aba" data-aba="cadastro" type="button">Criar conta</button>
+      </div>
+
+      <!-- Formulário de login -->
+      <form id="form-login" class="form-auth">
+        <label>E-mail
+          <input type="email" name="email" autocomplete="email" required />
+        </label>
+        <label>Senha
+          <input type="password" name="senha" autocomplete="current-password" minlength="6" required />
+        </label>
+        <button type="submit" class="btn btn-primario">Entrar</button>
+      </form>
+
+      <!-- Formulário de cadastro -->
+      <form id="form-cadastro" class="form-auth oculto">
+        <label>Nome
+          <input type="text" name="nome" autocomplete="name" minlength="2" maxlength="100" required />
+        </label>
+        <label>E-mail
+          <input type="email" name="email" autocomplete="email" required />
+        </label>
+        <label>Senha
+          <input type="password" name="senha" autocomplete="new-password" minlength="6" maxlength="72" required />
+          <small>Mínimo de 6 caracteres.</small>
+        </label>
+        <button type="submit" class="btn btn-primario">Criar conta</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ APLICAÇÃO (após login) ============ -->
+  <div id="tela-app" class="tela-app oculto">
+    <header class="topo">
+      <div class="topo-interno">
+        <strong class="topo-logo">📚 Minhas Atividades</strong>
+        <div class="topo-usuario">
+          <span id="nome-usuario"></span>
+          <button id="btn-sair" class="btn btn-texto" type="button">Sair</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="conteudo">
+      <!-- Disciplinas -->
+      <section class="painel">
+        <div class="painel-cabecalho">
+          <h2>Disciplinas</h2>
+          <form id="form-disciplina" class="form-inline">
+            <input type="text" id="input-disciplina" placeholder="Nova disciplina..." minlength="2" maxlength="100" required />
+            <button type="submit" class="btn btn-primario btn-pequeno">Adicionar</button>
+          </form>
+        </div>
+        <ul id="lista-disciplinas" class="lista-disciplinas"></ul>
+      </section>
+
+      <!-- Atividades -->
+      <section class="painel">
+        <div class="painel-cabecalho">
+          <h2>Atividades</h2>
+          <button id="btn-nova-atividade" class="btn btn-primario" type="button">+ Nova atividade</button>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filtros">
+          <label>Disciplina
+            <select id="filtro-disciplina"><option value="">Todas</option></select>
+          </label>
+          <label>Prioridade
+            <select id="filtro-prioridade">
+              <option value="">Todas</option>
+              <option value="ALTA">Alta</option>
+              <option value="MEDIA">Média</option>
+              <option value="BAIXA">Baixa</option>
+            </select>
+          </label>
+          <label>Status
+            <select id="filtro-status">
+              <option value="">Todos</option>
+              <option value="PENDENTE">Pendente</option>
+              <option value="EM_ANDAMENTO">Em andamento</option>
+              <option value="CONCLUIDA">Concluída</option>
+            </select>
+          </label>
+          <label>Ordenar por
+            <select id="filtro-ordenar">
+              <option value="dataEntrega">Data de entrega</option>
+              <option value="titulo">Título</option>
+              <option value="prioridade">Prioridade</option>
+              <option value="status">Status</option>
+              <option value="createdAt">Criação</option>
+            </select>
+          </label>
+          <label>Ordem
+            <select id="filtro-ordem">
+              <option value="asc">Crescente</option>
+              <option value="desc">Decrescente</option>
+            </select>
+          </label>
+          <button id="btn-limpar-filtros" class="btn btn-texto" type="button">Limpar</button>
+        </div>
+
+        <p id="contador-atividades" class="contador"></p>
+        <div id="lista-atividades" class="lista-atividades"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ============ MODAL DE ATIVIDADE (criar/editar) ============ -->
+  <div id="modal-atividade" class="modal oculto">
+    <div class="modal-caixa">
+      <div class="modal-cabecalho">
+        <h2 id="modal-titulo">Nova atividade</h2>
+        <button class="btn btn-texto btn-fechar" data-fechar-modal type="button" aria-label="Fechar">✕</button>
+      </div>
+      <form id="form-atividade" class="form-atividade">
+        <input type="hidden" name="id" />
+        <label>Título *
+          <input type="text" name="titulo" minlength="3" maxlength="150" required />
+        </label>
+        <label>Descrição
+          <textarea name="descricao" maxlength="1000" rows="3"></textarea>
+        </label>
+        <label>Disciplina *
+          <select name="disciplinaId" required><option value="">Selecione...</option></select>
+        </label>
+        <label>Data de entrega *
+          <input type="datetime-local" name="dataEntrega" required />
+        </label>
+        <div class="form-linha">
+          <label>Prioridade
+            <select name="prioridade">
+              <option value="BAIXA">Baixa</option>
+              <option value="MEDIA" selected>Média</option>
+              <option value="ALTA">Alta</option>
+            </select>
+          </label>
+          <label>Status
+            <select name="status">
+              <option value="PENDENTE" selected>Pendente</option>
+              <option value="EM_ANDAMENTO">Em andamento</option>
+              <option value="CONCLUIDA">Concluída</option>
+            </select>
+          </label>
+        </div>
+        <div class="modal-acoes">
+          <button type="button" class="btn btn-texto" data-fechar-modal>Cancelar</button>
+          <button type="submit" class="btn btn-primario">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

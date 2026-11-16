@@ -1,0 +1,10 @@
+{
+  "name": "senac-grupo-32-frontend",
+  "version": "1.0.0",
+  "description": "Frontend do sistema de gerenciamento de atividades acadêmicas (SENAC Grupo 32).",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes serve . -l 5173",
+    "dev": "npx --yes serve . -l 5173"
+  }
+}

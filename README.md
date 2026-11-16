@@ -111,9 +111,36 @@ git clone URL_DO_REPOSITORIO
 cd senac-grupo-32
 ```
 
-### Instalação e execução
+### Executar o backend
 
-As instruções para configurar o banco de dados, instalar as dependências e iniciar o frontend e backend serão adicionadas após a configuração do ambiente.
+O backend (API) é feito em Node.js e precisa de um banco MySQL/MariaDB. O passo a passo completo (instalar dependências, criar o banco, configurar o `.env` e rodar) está em [`backend/README.md`](backend/README.md).
+
+Resumo:
+
+```bash
+cd backend
+npm install
+# configure o arquivo .env (veja backend/README.md)
+npx prisma migrate deploy
+npm run dev
+```
+
+A API sobe em `http://localhost:3000`. Para testar, acesse `http://localhost:3000/api/saude`.
+
+### Executar o frontend
+
+O frontend é feito em HTML, CSS e JavaScript puro e **precisa ser servido em `http://localhost:5173`** — essa é a origem liberada pelo CORS da API. Não abra o `index.html` com duplo-clique (`file://`), pois o navegador bloqueia as chamadas à API.
+
+```bash
+cd frontend
+npm start          # usa Node.js (npx serve) na porta 5173
+# ou, alternativamente:
+python -m http.server 5173
+```
+
+Depois, abra no navegador: **http://localhost:5173**
+
+> Para o sistema funcionar por completo, o backend precisa estar rodando em `http://localhost:3000`. Mais detalhes do frontend em [`frontend/README.md`](frontend/README.md).
 
 ## Equipe de desenvolvimento
 
