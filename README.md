@@ -4,7 +4,7 @@
 Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas — SENAC EAD
 Professor: Anderson Clayton Garcia Lopes
 
-🎥 **Vídeo de demonstração (1 minuto):** [vídeo de demonstração](https://www.youtube.com/watch?v=wBPfEBL5l0s)
+🎥 **Vídeo de demonstração (1 minuto):** [vídeo de demonstração](https://youtu.be/wBPfEBL5l0s)
 
 ---
 
